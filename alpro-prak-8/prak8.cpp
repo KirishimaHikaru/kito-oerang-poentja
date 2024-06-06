@@ -48,21 +48,24 @@ void Matriks::matriks_jumlah(const Matriks &matriks1, const Matriks &matriks2)
 }
 void Matriks::perkalian_matriks(const Matriks &matriks1, const Matriks &matriks2)
 {
-   int i, j, k;
-      int barkol;
+   int i, j, k, barkol;
       baris = matriks1.baris;
       kolom = matriks1.kolom;
       barkol = matriks1.kolom;
-      for (i = 0; i < baris; i++){
-         for (j = 0; j < kolom; j++){
-            A[i][j] = 0;
+
+      for (int i = 0; i < baris; i++)
+      {
+         for (int j = 0; j < kolom; j++)
+         {
+            for (int k = 0; k < kolom; k++)
+            {
+               A[i][j] += matriks1.A[i][k] * matriks2.A[k][j];
+            }
          }
-         for (k = 0; k < barkol; k++){
-            A[i][j] = A[i][j] + matriks1.A[i][k] * matriks2.A[k][j];
-         }
-      cetak_matriks();
+         cetak_matriks();
       }
 }
+
 void Matriks::cetak_matriks()
 {
    int i, j;
